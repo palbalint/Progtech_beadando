@@ -1,0 +1,26 @@
+2019/05/10
+Alapötlet kigondolása
+
+2019/05/20
+Youtube-tutorialok nézegetése, megfelelõ technikák elsajátításaának megkezdése
+
+2019/05/22
+Programstruktúra tervezése,
+Eldöntöttem, hogy stratégia és state tervezési mintát fogok használni
+
+2019/05/24
+Adatbázis megvalósítása,
+Adatbázis model osztályok implementálása
+
+--/--/--
+View-k tervezése, megvalósítása
+
+--/--/--
+Üzleti logika implementálása,
+Contollerek kidolgozásának elkezdése
+
+--/--/--
+Unit testek írása
+
+--/--/--
+Tesztelés
