@@ -1,7 +1,7 @@
-package models.models.models;
+package com.models.Models;
 
-import models.models.db_models.Payment;
-import models.models.db_models.Users;
+import com.models.db_models.Payment;
+import com.models.db_models.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ public class PaymentModel {
     public Payment getPaymentByName(String name) throws SQLException, ClassNotFoundException {
         try{
             Connection conn = DbConnector.getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT id, methdod FROM payment WHERE method = ?");
+            PreparedStatement statement = conn.prepareStatement("SELECT payment_id, methdod FROM payment WHERE method = ?");
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
             if(!result.isBeforeFirst()){
@@ -22,7 +22,7 @@ public class PaymentModel {
             result.next();
 
             Payment payment = new Payment();
-            payment.setId(Integer.parseInt(result.getString("id")));
+            payment.setId(Integer.parseInt(result.getString("payment_id")));
             payment.setMethod(result.getString("method"));
             return payment;
         } catch (SQLException e){

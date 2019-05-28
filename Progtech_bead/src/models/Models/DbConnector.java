@@ -1,4 +1,4 @@
-package models.models.models;
+package com.models.Models;
 
 import java.sql.*;
 

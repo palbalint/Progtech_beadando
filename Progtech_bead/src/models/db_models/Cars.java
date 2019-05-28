@@ -1,4 +1,4 @@
-package models.models.db_models;
+package com.models.db_models;
 
 public class Cars {
     private int id;
