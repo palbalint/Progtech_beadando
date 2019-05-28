@@ -6,12 +6,12 @@ public class DbConnector {
     public DbConnector() {
     }
     private static Connection conn;
-    private static final String serverName = "localhost";
-    private static final String dbName = "progtech_db";
-    private static final String url = "jdbc:mysql://" + serverName + "/" + dbName;
+    private static final String SERVERNAME = "localhost:3308";
+    private static final String DBNAME = "progtech_db";
+    private static final String URL = "jdbc:mysql://" + SERVERNAME + "/" + DBNAME;
 
-    private static final String username = "balint";
-    private static final String password = "balintapro98";
+    private static final String USERNAME = "balint";
+    private static final String PASSWORD = "balintapro98";
 
     /**
      * Létrejön az adatbáziskapcsolat
@@ -23,7 +23,7 @@ public class DbConnector {
         if(conn == null){
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection(url, username, password);
+                conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             }catch (SQLException e){
                 e.printStackTrace();
                 throw e;

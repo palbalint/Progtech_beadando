@@ -35,6 +35,7 @@ public class LoginController {
                 Users user = model.login(username, password);
                 if(user != null){
                     RentalModel rentmod = new RentalModel();
+                    rentmod.setLoggedIn(user);
                 }
 
             } catch (SQLException e1) {

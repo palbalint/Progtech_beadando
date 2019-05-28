@@ -1,11 +1,22 @@
 package com.models.Models;
 
+import com.models.db_models.Cars;
 import com.models.db_models.Users;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class RentalModel {
 
-    private int price = 0;
+    public RentalModel(){
+        this.cars = new ArrayList<>();
+    }
+
     private Users loggedIn;
+    public ArrayList<Cars> cars;
 
     public Users getLoggedIn() {
         return loggedIn;
@@ -15,7 +26,26 @@ public class RentalModel {
         this.loggedIn = loggedIn;
     }
 
-    public int getPrice() {
-        return price;
+    public void getAllCars() throws SQLException, ClassNotFoundException {
+        try{
+            Connection conn = DbConnector.getConnection();
+            Statement statement = conn.createStatement();
+            String stmnt = "SELECT * from cars";
+            ResultSet result = statement.executeQuery(stmnt);
+
+            while(result.next()){
+                Cars car = new Cars();
+                car.setId(Integer.parseInt(result.getString("cars_id")));
+                car.setManufacturer(result.getString("manufacturer"));
+                car.setModel(result.getString("model"));
+                car.setPrice_per_day(Integer.parseInt(result.getString("price_per_day")));
+
+                cars.add(car);
+            }
+        }catch (SQLException e){
+            throw e;
+        }catch (ClassNotFoundException e){
+
+        }
     }
 }
