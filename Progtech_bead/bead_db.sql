@@ -14,13 +14,13 @@ CREATE TABLE IF NOT EXISTS `progtech_db`.`users` (
   `first_name` VARCHAR(50) NOT NULL,
   `last_name` VARCHAR(50) NOT NULL,
   `address` VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`users_id`));
+  PRIMARY KEY (`users_id`))
 ENGINE = InnoDB
 
 CREATE TABLE IF NOT EXISTS `progtech_db`.`payment` (
   `payment_id` INT NOT NULL AUTO_INCREMENT,
   `method` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`payment_id`));
+  PRIMARY KEY (`payment_id`))
 ENGINE = InnoDB
 
 CREATE TABLE IF NOT EXISTS `progtech_db`.`rental` (
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `progtech_db`.`rental` (
     FOREIGN KEY (`payment_payment_id`)
     REFERENCES `progtech_db`.`payment` (`payment_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 
 INSERT INTO cars(  manufacturer,     model,     price_per_day ) VALUES(  'test',     'test',     8000 );

@@ -28,16 +28,17 @@ public class RegisterController {
         public void actionPerformed(ActionEvent e) {
             try {
                 Users user = new Users(
-                        view.getUsername(),
-                        view.getPassword(),
-                        view.getEmail(),
-                        view.getFirstName(),
-                        view.getLastName(),
-                        view.getAddress()
-                );
-                model.register(user);
-                LOGGER.info("new user: username: " + user + "successfully registered");
-                view.setResult("Successful registration.");
+                            view.getUsername(),
+                            view.getPassword(),
+                            view.getEmail(),
+                            view.getFirstName(),
+                            view.getLastName(),
+                            view.getAddress()
+                    );
+                    model.register(user);
+                    LOGGER.info("new user: username: " + user.getUsername() + " successfully registered");
+                    view.setResult("Successful registration.");
+
             } catch (SQLException e1) {
                 e1.printStackTrace();
             } catch (ClassNotFoundException e1) {

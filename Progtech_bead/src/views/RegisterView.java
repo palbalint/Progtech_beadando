@@ -7,7 +7,6 @@ public class RegisterView extends JFrame {
     private JPanel regMain;
     private JTextField username_TF;
     private JPasswordField password_PF;
-    private JPasswordField verification_PF;
     private JTextField email_TF;
     private JTextField firstname_TF;
     private JTextField lastname_TF;
@@ -17,9 +16,6 @@ public class RegisterView extends JFrame {
 
     public String getUsername(){
         return this.username_TF.getText();
-    }
-    public String getVerification(){
-        return new String(this.verification_PF.getPassword());
     }
     public String getPassword(){
         return new String(this.password_PF.getPassword());

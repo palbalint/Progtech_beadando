@@ -9,6 +9,7 @@ public class LoginView extends JFrame {
     private JButton btn_login;
     private JButton btn_register;
     private JPanel mainPanel;
+    private JLabel lbl_message;
 
     public String getUsername(){
         return this.username_TF.getText();
@@ -23,15 +24,15 @@ public class LoginView extends JFrame {
     public void setRegisterActionListener(ActionListener listener){
         this.btn_register.addActionListener(listener);
     }
+    public void setLabelMessage(String message){
+        lbl_message.setText(message);
+    }
 
     public  LoginView(){
         add(mainPanel);
         setTitle("RentalApp");
         setResizable(false);
-        setSize(400, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    private void createUIComponents(){
-
     }
 }

@@ -10,8 +10,8 @@ public class DbConnector {
     private static final String DBNAME = "progtech_db";
     private static final String URL = "jdbc:mysql://" + SERVERNAME + "/" + DBNAME;
 
-    private static final String USERNAME = "balint";
-    private static final String PASSWORD = "balintapro98";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
     /**
      * Létrejön az adatbáziskapcsolat

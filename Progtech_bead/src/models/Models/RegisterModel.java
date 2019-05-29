@@ -4,6 +4,7 @@ import com.models.db_models.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisterModel {
@@ -30,7 +31,9 @@ public class RegisterModel {
             statement.setString(5, user.getLast_name());
             statement.setString(6, user.getAddress());
 
-            statement.execute();
+            statement.executeQuery();
+
+
         } catch (SQLException e){
             throw e;
         } catch (ClassNotFoundException e){
