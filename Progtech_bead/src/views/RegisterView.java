@@ -45,6 +45,6 @@ public class RegisterView extends JFrame {
         setTitle("Registration");
         setResizable(false);
         setSize(500, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }

@@ -2,6 +2,8 @@ package com.controllers;
 
 import com.models.Models.RentalModel;
 import com.models.db_models.Cars;
+import com.models.db_models.Users;
+import com.state.RentalS;
 import com.views.RentalView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +35,9 @@ public class RentalController {
 
         view.setRentButton(new RentTheCar());
     }
+    public Users getUser(){
+        return this.model.getLoggedIn();
+    }
 
     /**
      * Feltölt egy JTable táblát adatokkal egy listából
@@ -52,6 +57,26 @@ public class RentalController {
         }
 
         table.setModel(model);
+    }
+
+    public void startRental(RentalS rental){
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            int stateChanges = 0;
+            @Override
+            public void run() {
+                if(stateChanges < 2){
+                    view.setRentalLabel(rental.getStateMessage());
+                    rental.stateChange();
+                    stateChanges++;
+                }
+                else{
+                    timer.cancel();
+                    timer.purge();
+                }
+            }
+        }, 0, 3000);
+
     }
 
     class RentTheCar implements ActionListener{

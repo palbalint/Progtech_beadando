@@ -1,17 +1,16 @@
 package com.models.Models;
 
 import java.sql.*;
+import java.util.TimeZone;
 
 public class DbConnector {
-    public DbConnector() {
+    private DbConnector() {
     }
-    private static Connection conn;
-    private static final String SERVERNAME = "localhost:3308";
-    private static final String DBNAME = "progtech_db";
-    private static final String URL = "jdbc:mysql://" + SERVERNAME + "/" + DBNAME;
+    private static Connection conn = null;
+    private static final String URL = "jdbc:mysql://localhost:3308/progtech_db?serverTimezone=" + TimeZone.getDefault().getID();;
 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "balintapro98";
 
     /**
      * Létrejön az adatbáziskapcsolat
