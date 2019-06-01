@@ -40,9 +40,9 @@ public class RegisterController {
                     view.setResult("Successful registration.");
 
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                LOGGER.info("Registration was not successful, cause: " + e1.getMessage());
+                view.setResult("Unsuccessful registration.");
             } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
             }
 
         }

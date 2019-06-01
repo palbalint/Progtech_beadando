@@ -33,19 +33,6 @@ public class RentalModel {
         return price;
     }
 
-    public long rentedInterval(){
-        Date from = rental.getRented_from();
-        Date to = rental.getRented_to();
-
-        long interval = (to.getTime() - from.getTime()) / 86400000;
-        return Math.abs(interval);
-    }
-
-    public void makeRentalValid(int id){
-        Cars car = cars.stream().filter(x -> x.getId() == id).findAny().orElse(null);
-        rentedCars.add(car);
-        price += car.getPrice_per_day() * rentedInterval();
-    }
 
     public void getAllCars() throws SQLException, ClassNotFoundException {
         try{
@@ -62,6 +49,7 @@ public class RentalModel {
                 car.setPrice_per_day(Integer.parseInt(result.getString("price_per_day")));
 
                 cars.add(car);
+                price = result.getInt("price_per_day");
             }
         }catch (SQLException e){
             throw e;

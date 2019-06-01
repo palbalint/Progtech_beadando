@@ -12,6 +12,7 @@ import com.models.db_models.Users;
 import com.startegy.BankCardPayment;
 import com.startegy.CashPayment;
 import com.startegy.PaymentStrategy;
+import com.state.RentalS;
 import com.views.BankCardView;
 import com.views.CheckUserView;
 
@@ -64,7 +65,7 @@ public class CheckUserController {
         public void actionPerformed(ActionEvent e) {
             BankCardModel model = new BankCardModel();
             BankCardView view = new BankCardView();
-            BankCardController bcontroller = new BankCardController(view, model);
+            BankCardController bcontroller = new BankCardController(view, model, controller);
             view.setVisible(true);
             info = new BankCardInfo();
             ((BankCardInfo)info).setUser(model.getUser());
@@ -92,14 +93,18 @@ public class CheckUserController {
                 Users user = rentController.getUser();
                 Payment method = payModel.getPaymentByName(info.info());
 
-                //rentController.
+                rentController.startRental(new RentalS());
+
+                LOGGER.info("Successful rental.");
 
             } catch (InvalidPaymentException e1) {
-                e1.printStackTrace();
+                view.setBtn_nextStatus(false);
+                view.setStatus_lbl(e1.getMessage());
+                LOGGER.info("Payment failed cause: " + e1.getMessage());
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                view.setStatus_lbl("Cannot connect to the database.");
+                LOGGER.info("Payment failed caus: " + e1.getMessage());
             } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
             }
         }
     }

@@ -15,9 +15,5 @@ public class Main {
         LoginModel model = new LoginModel();
         LoginController controller = new LoginController(view, model);
         view.setVisible(true);
-        /*RentalView view = new RentalView();
-        RentalModel model = new RentalModel();
-        RentalController controller = new RentalController(model, view);
-        view.setVisible(true);*/
     }
 }

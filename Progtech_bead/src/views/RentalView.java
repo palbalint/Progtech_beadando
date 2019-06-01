@@ -13,9 +13,10 @@ public class RentalView extends JFrame{
     private JLabel lbl_price;
     private JLabel lbl_rental;
     private JPanel RentalMain;
+    private JButton btn_check;
 
-    public void setPriceLabel(int price){
-        this.lbl_price.setText(Integer.toString(price));
+    public void setPriceLabel(String price){
+        this.lbl_price.setText(price);
     }
     public void setRentalLabel(String state){
         this.lbl_rental.setText(state);
@@ -23,13 +24,12 @@ public class RentalView extends JFrame{
     public void setRentButton(ActionListener listener){
         this.btn_rent.addActionListener(listener);
     }
+    public void setBtn_checkActionListener(ActionListener listener){
+        this.btn_check.addActionListener(listener);
+    }
 
     public JTable getRental_table() {
         return rental_table;
-    }
-
-    public JButton getBtn_rent() {
-        return btn_rent;
     }
 
     public void setRental_table(JTable rental_table) {
@@ -47,6 +47,7 @@ public class RentalView extends JFrame{
 
         DefaultTableModel rental_model = new DefaultTableModel();
         rental_model.setColumnIdentifiers(colnames);
+        rental_table.setModel(rental_model);
 
         rental_table.setRowSelectionAllowed(true);
         this.btn_rent.setEnabled(false);

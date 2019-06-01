@@ -20,9 +20,6 @@ public class RegisterModel {
             Connection conn = DbConnector.getConnection();
             PreparedStatement statement = conn.prepareStatement("insert into users (username, password, email, first_name, last_name, address) values (?,?,?,?,?,?)");
 
-            if(user.getUsername().length() < 8 || user.getAddress().length() < 15 || user.getEmail().length() < 5 || user.getFirst_name().length() < 2 || user.getLast_name().length() < 2 ||user.getPassword().length() < 8){
-                throw new SQLException();
-            }
 
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
@@ -31,7 +28,7 @@ public class RegisterModel {
             statement.setString(5, user.getLast_name());
             statement.setString(6, user.getAddress());
 
-            statement.executeQuery();
+            statement.execute();
 
 
         } catch (SQLException e){
