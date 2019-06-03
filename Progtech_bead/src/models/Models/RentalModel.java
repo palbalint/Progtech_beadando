@@ -57,4 +57,7 @@ public class RentalModel {
 
         }
     }
+    public void addCar(Cars car){
+        cars.add(car);
+    }
 }

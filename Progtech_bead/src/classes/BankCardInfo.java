@@ -6,7 +6,7 @@ import com.models.db_models.Users;
 public class BankCardInfo implements IPaymentInfo {
     @Override
     public String info() {
-        return "BANK CARD";
+        return "credit card";
     }
 
     private String cardNumber;
@@ -21,7 +21,7 @@ public class BankCardInfo implements IPaymentInfo {
      * @throws IllegalArgumentException
      */
     public void setCardNumber(String cardNumber) throws IllegalArgumentException {
-        if(cardNumber.matches(".*[a-zA-Z]*.")){
+        if(cardNumber.matches(".*[a-zA-Z].*")){
             throw new IllegalArgumentException("Card number can only contain numbers!!");
         }
         this.cardNumber = cardNumber;

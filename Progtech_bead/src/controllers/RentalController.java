@@ -74,6 +74,7 @@ public class RentalController {
             public void run() {
                 if(stateChanges < 6){
                     view.setRentalLabel(rental.getStateMessage());
+                    setPriceLabel();
                     rental.stateChange();
                     stateChanges++;
                 }
@@ -91,20 +92,24 @@ public class RentalController {
         return Integer.toString(price);
     }
 
+    public void setPriceLabel(){
+        int col = 0;
+        int row = view.getRental_table().getSelectedRow();
+        String value = view.getRental_table().getModel().getValueAt(row, col).toString();
+        String res = makeRentalValid(Integer.parseInt(value));
+        view.setPriceLabel(res);
+    }
+
     class RentTheCar implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int col = 0;
-            int row = view.getRental_table().getSelectedRow();
-
-            String value = view.getRental_table().getModel().getValueAt(row, col).toString();
-            String res = makeRentalValid(Integer.parseInt(value));
+            setPriceLabel();
 
             model.rental.setStatus(true);
             startRental(new RentalS());
 
-            view.setPriceLabel(res);
+
         }
     }
 
@@ -116,7 +121,7 @@ public class RentalController {
                 CheckUserView chview = new CheckUserView();
                 CheckUserModel chmodel = new CheckUserModel();
                 chmodel.setUser(model.getLoggedIn());
-                CheckUserController chcontroller = new CheckUserController(chmodel, chview, controller);
+                CheckUserController chcontroller = new CheckUserController(chmodel, chview, controller, model);
                 chview.setVisible(true);
             }
         }

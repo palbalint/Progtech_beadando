@@ -7,6 +7,7 @@ import com.classes.CashInfo;
 import com.models.Models.BankCardModel;
 import com.models.Models.CheckUserModel;
 import com.models.Models.PaymentModel;
+import com.models.Models.RentalModel;
 import com.models.db_models.Payment;
 import com.models.db_models.Users;
 import com.startegy.BankCardPayment;
@@ -28,12 +29,14 @@ public class CheckUserController {
     private CheckUserView view;
     private CheckUserController controller;
     private RentalController rentController;
+    private RentalModel rentMod;
     private PaymentModel payModel;
     PaymentStrategy strategy;
     IPaymentInfo info;
 
-    public CheckUserController(CheckUserModel model, CheckUserView view, RentalController rentController) {
+    public CheckUserController(CheckUserModel model, CheckUserView view, RentalController rentController, RentalModel rentMod) {
         this.model = model;
+        this.rentMod = rentMod;
         this.view = view;
         this.controller = this;
         this.rentController = rentController;
@@ -65,7 +68,7 @@ public class CheckUserController {
         public void actionPerformed(ActionEvent e) {
             BankCardModel model = new BankCardModel();
             BankCardView view = new BankCardView();
-            BankCardController bcontroller = new BankCardController(view, model, controller);
+            BankCardController bcontroller = new BankCardController(view, model, controller, rentMod);
             view.setVisible(true);
             info = new BankCardInfo();
             ((BankCardInfo)info).setUser(model.getUser());
@@ -90,8 +93,6 @@ public class CheckUserController {
         public void actionPerformed(ActionEvent e) {
             try{
                 view.setStatus_lbl(strategy.Pay(info));
-                Users user = rentController.getUser();
-                Payment method = payModel.getPaymentByName(info.info());
 
                 rentController.startRental(new RentalS());
 
@@ -101,10 +102,6 @@ public class CheckUserController {
                 view.setBtn_nextStatus(false);
                 view.setStatus_lbl(e1.getMessage());
                 LOGGER.info("Payment failed cause: " + e1.getMessage());
-            } catch (SQLException e1) {
-                view.setStatus_lbl("Cannot connect to the database.");
-                LOGGER.info("Payment failed caus: " + e1.getMessage());
-            } catch (ClassNotFoundException e1) {
             }
         }
     }

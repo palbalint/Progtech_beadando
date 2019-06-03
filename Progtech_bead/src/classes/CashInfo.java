@@ -6,7 +6,7 @@ import com.models.db_models.Users;
 public class CashInfo implements IPaymentInfo {
     @Override
     public String info() {
-        return "CASH";
+        return "cash";
     }
 
     private Users user;
